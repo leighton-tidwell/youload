@@ -4,19 +4,22 @@ h1{
   margin:0;
 }
 
-.root{
+:root{
   --dark-black: #111111;
   --dark-grey: #161616;
   --light-grey: #2D2D2D;
   --primary-text: #3B66D3;
   --secondary-text: #9C9C9C;
+  --off-white: #b3b3b5;
 }
 
+/* Global Container*/
 .container{
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
 }
 
+/*header Including the Airmen Motto*/
 header{
   background: url("../images/mountain-magic-hour.jpg");
   background-position: top center;
@@ -28,7 +31,7 @@ nav{
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 3px solid #b3b3b5;
+  border-bottom: 1px solid var(--off-white);
 }
 
 .logo{
@@ -37,6 +40,29 @@ nav{
   font-weight: 800;
 }
 
-.logo h1{
-  color: #3B66D3;
+.nav-right{
+  width: 50%;
+  text-align: right;
+  padding: .5em;
+  font-weight: 300;
+  font-size: 1.2em;
 }
+
+.nav-right a{
+  color: var(--primary-text);
+  text-decoration: none;
+  padding: 0px 10px;
+  color: var(--off-white);
+}
+
+.site-motto-container{
+  color: rgb(46,83,175);
+  color: linear-gradient(90deg, rgba(46,83,175,1) 0%, rgba(59,102,211,1) 100%);
+  text-align: center;
+  padding: 100px;
+}
+
+.site-motto-container h1{
+  font-size: 3em;
+}
+
