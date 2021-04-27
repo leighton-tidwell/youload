@@ -53,6 +53,12 @@ nav{
   text-decoration: none;
   padding: 0px 10px;
   color: var(--off-white);
+  border-left: 1px solid var(--off-white);
+}
+
+/* Created the class for this for the border on the right. Without this it would show 2 lines between the links */
+.about{
+  border-right: 1px solid var(--off-white);
 }
 
 .site-motto-container{
