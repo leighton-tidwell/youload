@@ -3,8 +3,9 @@ const readline = require('readline');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-app.use(express.static('public'));
 const port = 3000;
+
+app.use(express.static('public'));
 
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
