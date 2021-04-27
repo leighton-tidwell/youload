@@ -1,0 +1,8 @@
+# ignore node_modules
+node_modules/
+
+# ignore videos
+videos/
+
+#ignore package-lock
+package-lock.json
