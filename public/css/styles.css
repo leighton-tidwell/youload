@@ -19,6 +19,12 @@ h1{
   margin: 0 auto;
 }
 
+/*Global Paragrap*/
+/* all paragraphs have the same color */
+p{
+  color:var(--secondary-text);
+}
+
 /*header Including the Airmen Motto*/
 header{
   background: url("../images/mountain-magic-hour.jpg");
@@ -70,5 +76,25 @@ nav{
 
 .site-motto-container h1{
   font-size: 3em;
+}
+
+.access{
+  background: var(--dark-grey);
+  padding: 25px 0;
+}
+
+.site-brief-access {
+  flex-basis: 100%;
+  width: 50%;
+  border: var(--light-grey);
+  background:var(--light-grey);
+  margin: 2% 0 ;
+  padding: .8em;
+  -ms-flex-direction: row;
+}
+
+.site-brief-access h2{
+  margin: 0;
+  color: var(--primary-text);
 }
 
