@@ -27,7 +27,7 @@
 <!-- This is the class for underneath of the header,
  which includes the short brief of the site and the access code section -->
 <section class="access">
-  <div class="container">
+  <div class="container flex">
     <div class="site-brief-access">
       <div class="site-brief">
         <h2>Moral Booster</h2>
@@ -38,13 +38,19 @@
           er faucibus pharetra, sit semper odio sit. Morbi vitae, 
           neque dictumst urna faucibus tempor amet tincidunt.
         </p>
-    <div class="site-brief-access"> <!-- This may have to be a separate div because it wants to go in the box above and not the side-->
-      <div class="access">
-        <h2>Enter Access Code</h2>
       </div>
     </div>
+    <div class="site-brief-access"> <!-- This may have to be a separate div because it wants to go in the box above and not the side-->
+      <div class="enter-access">
+        <h2>Enter Access Code</h2>
+        <div class="enter-code">
+          <input type="text" id="number" name="number">
+          <input type="submit" value="Enter">
+        </div>
+      </div>
     </div>
-  </div>
+    
+ 
 </section>
 
 

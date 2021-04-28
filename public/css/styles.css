@@ -19,6 +19,12 @@ h1{
   margin: 0 auto;
 }
 
+.flex{
+  display: flex;
+  flex-direction: row;
+
+}
+
 /*Global Paragrap*/
 /* all paragraphs have the same color */
 p{
@@ -78,6 +84,9 @@ nav{
   font-size: 3em;
 }
 
+
+
+
 .access{
   background: var(--dark-grey);
   padding: 25px 0;
@@ -86,15 +95,62 @@ nav{
 .site-brief-access {
   flex-basis: 100%;
   width: 50%;
-  border: var(--light-grey);
-  background:var(--light-grey);
   margin: 2% 0 ;
-  padding: .8em;
-  -ms-flex-direction: row;
+  
 }
+
 
 .site-brief-access h2{
   margin: 0;
   color: var(--primary-text);
+}
+
+
+.site-brief{
+  width: 80%;
+  border: var(--light-grey);
+  background:var(--light-grey);
+  padding: .8em;
+}
+
+.enter-access{
+  border: var(--light-grey);
+  background:var(--light-grey);
+  
+  height: 100%; /* change this to a padding after sizing the enter code form */
+}
+
+.enter-access h2{
+  padding: .8em;
+}
+
+.enter-code{
+ text-align: center; /*this aligns the input box to the cetner*/
+  font-size: 2em;
+}
+
+#number{
+  width: 70%;
+  border-top: 2px solid var(--primary-text);
+  border-left: 2px solid var(--primary-text);
+  border-bottom: 2px solid var(--primary-text);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: #4d4d4d;
+  padding: 6px;
+}
+
+input[type=submit]{
+  margin-left: -10px;
+  border-top: 2px solid var(--primary-text);
+  border-bottom: 2px solid var(--primary-text);
+  border-right: 2px solid var(--primary-text);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: none;
+  background: var(--primary-text);
+  color: #cbcbcb;
+  cursor: pointer;
+  padding: 6px;
 }
 
