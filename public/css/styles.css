@@ -126,7 +126,7 @@ nav{
 
 .enter-code{
  text-align: center; /*this aligns the input box to the cetner*/
-  font-size: 2em;
+  /* Font need to be bigger */
 }
 
 #number{
@@ -137,7 +137,7 @@ nav{
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background: #4d4d4d;
-  padding: 6px;
+  font-size: 1.5em;
 }
 
 input[type=submit]{
@@ -151,6 +151,55 @@ input[type=submit]{
   background: var(--primary-text);
   color: #cbcbcb;
   cursor: pointer;
-  padding: 6px;
+  font-size: 1.5em;
 }
+
+/* This only the contact us section */
+.contact{  /* this class is to only make a background color*/
+  background: var(--dark-black);
+  padding: 15px; /*the padding is to fix the colliding margin bug*/
+}
+
+.contact-us{ /*this section is to make the box */
+  border: var(--light-grey);
+  background: var(--light-grey);
+  padding: .8em; /*this padding keeps the items away from the border*/
+}
+
+.contact-us h2{
+  color:var(--primary-text);
+}
+
+.contact-form{
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group{ /* might use this section to align the left side of the input boxed */
+  padding: 10px;
+}
+
+label{ /*used to set the color of the labels*/
+  color: #878787;
+  /* might use this section to align the left side of the input boxed */
+}
+
+input{
+  border: 2px solid var(--primary-text);
+  border-radius: 5px;
+  background: #4d4d4d;
+  /*need to choose a color for the text*/
+}
+/*message label needs to go to the top of the area and needs a margin*/
+
+textarea{
+  border: 2px solid var(--primary-text);
+  border-radius: 5px;
+  background: #4d4d4d;
+}
+
+
 
