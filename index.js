@@ -10,14 +10,19 @@ app.use(express.static('public'));
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+// << db setup >>
+const db = require("./db");
+const dbName = "youload";
+const dbCollectionName = "_videos";
+
 app.get('/', (req, res) => {
   res.sendFile('./index.html');
 })
 
-app.post('/video', urlencodedParser, function (req, res) {
+app.post('/downloadVideo', urlencodedParser, function (req, res) {
   console.log(req.body);
   const ref = req.body.url;
-  const video_id = req.body.url.split('v=')[1];
+  const videoId = req.body.url.split('v=')[1];
 
 
   // example taken from ytdl-core github
@@ -77,7 +82,7 @@ app.post('/video', urlencodedParser, function (req, res) {
     // Keep encoding
     '-c:v', 'copy',
     // Define output file
-    `./public/videos/${video_id}.mkv`,
+    `./public/videos/${videoId}.mkv`,
   ], {
     windowsHide: true,
     stdio: [
@@ -88,6 +93,27 @@ app.post('/video', urlencodedParser, function (req, res) {
     ],
   });
   ffmpegProcess.on('close', () => {
+    // File done downloading
+    // Add video information to database
+    let videoItem = {};
+    ytdl.getInfo(videoId).then(info => {
+      videoItem = {
+        videoId: videoId,
+        title: info.videoDetails.title,
+        description: info.description,
+        rating: info.player_response.videoDetails.averageRating,
+        uploadedBy: info.videoDetails.author.name,
+      };
+    });
+    db.initialize(dbName, collectionName, function (dbCollection) {
+      // Insert video into database
+      dbCollection.insertOne(videoItem, (error, result) => {
+        if ( error ) throw error;
+      });
+    }, function (err) { 
+      throw (err);
+    });
+
     console.log('done');
     // Cleanup
     process.stdout.write('\n\n\n\n');

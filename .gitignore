@@ -6,3 +6,6 @@ videos/
 
 #ignore package-lock
 package-lock.json
+
+#ignore db.js
+db.js
