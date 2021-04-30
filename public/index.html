@@ -1,85 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Moral Booster</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
 
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo">
-        <h1>Moral Booster</h1>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Moral Booster</h1>
+        </div>
+        <div class="nav-right">
+          <a href="#">YouLoad</a>
+          <a href="#">Games</a>
+          <a href="#">About</a>
+        </div>
+      </nav>
+      <div class="site-motto-container">
+        <h1>For The Airmen, By The Airmen</h1>
       </div>
-      <div class="nav-right">
-        <a href="#">YouLoad</a>
-        <a href="#">Games</a>
-        <a class="about" href="#">About</a> <!--Had to give this a class so i could give it a border-right-->
-      </div>
-    </nav>
-    <div class="site-motto-container">
-      <h1>For The Airmen, By The Airmen</h1>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- This is the class for underneath of the header,
+  <!-- This is the class for underneath of the header,
  which includes the short brief of the site and the access code section -->
-<section class="access">
-  <div class="container flex">
-    <div class="site-brief-access">
-      <div class="site-brief">
+  <section class="access">
+    <div class="container flex">
+      <div class="access-component"> <!-- Making these the same class since they are similar elements, if need to change specifics we will add utility class. -->
         <h2>Moral Booster</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend sed ornare q
           uisque sit scelerisque ultrices digni
           ssim enim. Pellentesque faucibus id sit dignissim.Nam purus facilisis integ
-          er faucibus pharetra, sit semper odio sit. Morbi vitae, 
+          er faucibus pharetra, sit semper odio sit. Morbi vitae,
           neque dictumst urna faucibus tempor amet tincidunt.
         </p>
       </div>
-    </div>
-    <div class="site-brief-access"> <!-- This may have to be a separate div because it wants to go in the box above and not the side-->
-      <div class="enter-access">
+      <div class="access-component">
         <h2>Enter Access Code</h2>
         <div class="enter-code">
-          <input type="text" id="number" name="number">
-          <input type="submit" value="Enter">
+          <input type="text" class="access-code-input" name="number">
+          <input type="submit" class="access-code-submit" value="Enter">
+        </div>
+      </div>
+  </section>
+  <div class="divider"><!-- to get gradient divider --></div>
+  <!-- This section is just the Contact us Box -->
+  <section class="contact">
+    <div class="container flex">
+      <div class="contact-us">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+          <!--this is to separate the h2 from the inputs -->
+          <div class="input-group">
+            <label for="name">Name: </label>
+            <input type="text" name="name" class="contact-input">
+          </div>
+          <div class="input-group">
+            <label for="email">Email: </label>
+            <input type="email" name="email" class="contact-input">
+          </div>
+          <div class="input-group">
+            <label for="message">Message:</label>
+            <textarea class="contact-textarea"></textarea>
+          </div>
+          <button type="button" class="contact-button">Submit</button>
         </div>
       </div>
     </div>
-</section>
-
-<!-- This section is just the Contact us Box -->
-<section class="contact">
-  <div class="container">
-    <div class="contact-us">
-      <h2>Contact us</h2>
-      <div class="contact-form"> <!--this is to separate the h2 from the inputs -->
-        <div class="input-group">
-          <label for="name" class="name">Name: </label>
-          <input type="text" name="name" class="contact-input">
+  </section>
+  <footer>
+    <div class="container flex">
+      <div class="footer-box">
+        <div class="footer-text">
+          <h3>B & T Creations</h3>
+          <p>We know boredom</p>
         </div>
-        <div class="input-group">
-          <label for="email" class="email">Email: </label>
-          <input type="email" name="email" class="contact-input">
+        <div class="footer-text">
+          <h3>FAQs</h3>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">About Us</a>
         </div>
-        <div class="input-group">
-          <label for="message">Message:</label>
-          <textarea class="contact-textarea"></textarea>
+        <div class="footer-text">
+          <h3>Support</h3>
+          <a href="#">Request changes</a>
+          <a href="#">Request a change</a>
         </div>
-        <button type="button" class="contact-button">Submit</button>
       </div>
     </div>
-  </div>
-</section>
-
-
-
-
-
-
+  </footer>
 </body>
-
 </html>

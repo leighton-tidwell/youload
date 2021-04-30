@@ -1,16 +1,24 @@
-body,
-h1{
-  font-family: 'Roboto', sans-serif;
-  margin:0;
-}
-
 :root{
   --dark-black: #111111;
   --dark-grey: #161616;
   --light-grey: #2D2D2D;
   --primary-text: #3B66D3;
   --secondary-text: #9C9C9C;
+  --submit-text-color: #cbcbcb;
+  --footer-text: #395FBE;
+  --footer-links: #808080;
   --off-white: #b3b3b5;
+  --off-white-transparent: rgba(179,179,181,.25);
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background: var(--dark-grey);
+  margin:0;
+}
+
+h1, h2, h3{
+  margin: 0;
 }
 
 /* Global Container*/
@@ -22,13 +30,24 @@ h1{
 .flex{
   display: flex;
   flex-direction: row;
-
+  align-items: center;
+  justify-content: center;
 }
 
-/*Global Paragrap*/
+.divider{
+  height: 1px;
+  background: rgb(59,102,211);
+  background: -moz-linear-gradient(90deg, rgba(59,102,211,1) 0%, rgba(59,102,211,0) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(59,102,211,1) 0%, rgba(59,102,211,0) 100%);
+  background: linear-gradient(90deg, rgba(59,102,211,1) 0%, rgba(59,102,211,0) 100%);
+}
+
+/* Global Paragraph */
 /* all paragraphs have the same color */
 p{
   color:var(--secondary-text);
+  padding: 0;
+  margin: 0;
 }
 
 /*header Including the Airmen Motto*/
@@ -44,18 +63,20 @@ nav{
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid var(--off-white);
+  padding: 20px 0 10px 0;
 }
 
 .logo{
   width: 50%;
   padding: .5em;
   font-weight: 800;
+  font-size: 1.5em;
 }
 
 .nav-right{
   width: 50%;
   text-align: right;
-  padding: .5em;
+  padding: 0px 3em 0px 0px;
   font-weight: 300;
   font-size: 1.2em;
 }
@@ -63,61 +84,53 @@ nav{
 .nav-right a{
   color: var(--primary-text);
   text-decoration: none;
-  padding: 0px 10px;
+  padding: 0px 20px;
   color: var(--off-white);
-  border-left: 1px solid var(--off-white);
+  border-left: 1px solid var(--off-white-transparent);
 }
 
-/* Created the class for this for the border on the right. Without this it would show 2 lines between the links */
+/* Pseudo element grabs last link */
+.nav-right a:last-child{
+  border-right: 1px solid var(--off-white-transparent);
+}
+
+/* Class not required anymore..
+   Created the class for this for the border on the right. Without this it would show 2 lines between the links 
 .about{
   border-right: 1px solid var(--off-white);
 }
+*/
 
 .site-motto-container{
-  color: rgb(46,83,175);
-  color: linear-gradient(90deg, rgba(46,83,175,1) 0%, rgba(59,102,211,1) 100%);
   text-align: center;
   padding: 100px;
 }
 
 .site-motto-container h1{
-  font-size: 3em;
+  font-size: 4em;
+  color: rgb(46,83,175); /* Fallback for browsers not supporting gradient */
+  color: linear-gradient(90deg, rgba(46,83,175,1) 0%, rgba(59,102,211,1) 100%);
 }
 
 
 
-
+/* Access and Description Box */
 .access{
   background: var(--dark-grey);
   padding: 25px 0;
 }
 
-.site-brief-access {
+.access-component{
   flex-basis: 100%;
-  width: 50%;
-  margin: 2% 0 ;
-  
-}
-
-
-.site-brief-access h2{
-  margin: 0;
-  color: var(--primary-text);
-}
-
-
-.site-brief{
-  width: 80%;
   border: var(--light-grey);
   background:var(--light-grey);
   padding: .8em;
+  margin: 5% 2%;
+  border-radius: 5px;
 }
 
-.enter-access{
-  border: var(--light-grey);
-  background:var(--light-grey);
-  
-  height: 100%; /* change this to a padding after sizing the enter code form */
+.access-component h2{
+  color: var(--primary-text);
 }
 
 .enter-access h2{
@@ -125,12 +138,13 @@ nav{
 }
 
 .enter-code{
- text-align: center; /*this aligns the input box to the cetner*/
-  /* Font need to be bigger */
+  /* Dont want it centered, want it aligned with the header */
+  margin-top: 5%;
 }
 
-#number{
-  width: 70%;
+/* dont use ID, we are gonna use those for something else */
+.access-code-input{
+  width: 79%;
   border-top: 2px solid var(--primary-text);
   border-left: 2px solid var(--primary-text);
   border-bottom: 2px solid var(--primary-text);
@@ -138,10 +152,14 @@ nav{
   border-bottom-left-radius: 5px;
   background: #4d4d4d;
   font-size: 1.5em;
+  outline: none;
+  padding: .3em .2em;
+  color: var(--submit-text-color);
 }
 
-input[type=submit]{
-  margin-left: -10px;
+/* Refrain from selecting the input as a whole, add a class to it. */
+.access-code-submit{
+  margin-left: -.5em;
   border-top: 2px solid var(--primary-text);
   border-bottom: 2px solid var(--primary-text);
   border-right: 2px solid var(--primary-text);
@@ -149,9 +167,12 @@ input[type=submit]{
   border-bottom-right-radius: 5px;
   border-left: none;
   background: var(--primary-text);
-  color: #cbcbcb;
+  color: var(--submit-text-color);
   cursor: pointer;
   font-size: 1.5em;
+  font-weight: 600;
+  padding: .3em 0;
+  width: 19%;
 }
 
 /* This only the contact us section */
@@ -164,6 +185,8 @@ input[type=submit]{
   border: var(--light-grey);
   background: var(--light-grey);
   padding: .8em; /*this padding keeps the items away from the border*/
+  flex-basis: 60%;
+  border-radius: 5px;
 }
 
 .contact-us h2{
@@ -171,35 +194,120 @@ input[type=submit]{
 }
 
 .contact-form{
-  width: 80%;
-  text-align: center;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  padding: 2em 5em;
 }
 
 .input-group{ /* might use this section to align the left side of the input boxed */
   padding: 5px;
+  text-align:right;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: .5em;
 }
 
 label{ /*used to set the color of the labels*/
   color: #878787;
+  flex-basis: 15%;
+  padding-right: 1em;
   /* might use this section to align the left side of the input boxed */
 }
 
-input{
+
+/* Youre selecting all inputs, its clashing with our other ones
+.input-group input{
   border: 2px solid var(--primary-text);
   border-radius: 5px;
   background: #4d4d4d;
-  /*need to choose a color for the text*/
+  /*need to choose a color for the text
 }
 /*message label needs to go to the top of the area and needs a margin*/
 
-textarea{
+/* Do this instead */
+.input-group input{
   border: 2px solid var(--primary-text);
   border-radius: 5px;
   background: #4d4d4d;
+  padding: .5em .2em;
+  outline: none;
+  color: var(--submit-text-color);
+  flex-basis: 85%;
 }
+
+.input-group textarea{
+  border: 2px solid var(--primary-text);
+  border-radius: 5px;
+  background: #4d4d4d;
+  flex-basis: 85%;
+  outline: none;
+  color: var(--submit-text-color);
+  resize: none;
+  min-height: 5em;
+}
+
+.contact-button{
+  float: right;
+  border-radius: 5px;
+  padding: .5em 1em;
+  background: var(--primary-text);
+  color: var(--submit-text-color);
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 700;
+  border: none;
+}
+
+/* Footer styles */
+footer {
+  background: var(--dark-black);
+  padding: 25px 0;
+}
+
+.footer-box{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 10px;
+}
+/* CSS hack for gradient border */
+.footer-box::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  border-radius:5px; 
+  padding:2px; 
+  background:linear-gradient(90deg,var(--primary-text),var(--dark-black)); 
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; 
+  mask-composite: exclude; 
+}
+
+.footer-text{
+  flex-basis: 100%;
+  padding: 2em 0;
+}
+
+.footer-text a{
+  color: var(--footer-links);
+  text-decoration: none;
+}
+
+.footer-text p{
+  color: var(--footer-links);
+}
+
+.footer-text h3{
+  color: var(--footer-text);
+  
+}
+
+
 
 
 
