@@ -4,8 +4,14 @@ node_modules/
 # ignore videos
 videos/
 
-#ignore package-lock
+# ignore thumbnails
+thumbnails/
+
+# ignore package-lock
 package-lock.json
 
-#ignore db.js
+# ignore db.js
 db.js
+
+# ignore test.html
+test.html

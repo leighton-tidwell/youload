@@ -2,24 +2,24 @@ const cp = require('child_process');
 const readline = require('readline');
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const fetch = require('node-fetch');
 const app = express();
 const port = 3000;
 
 app.use(express.static('public'));
-
-const jsonParser = bodyParser.json();
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(express.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // << db setup >>
 const db = require("./db");
+const { response } = require('express');
 const dbName = "youload";
 const dbCollectionName = "_videos";
 
-app.get('/', (req, res) => {
-  res.sendFile('./index.html');
-})
-
-app.post('/downloadVideo', urlencodedParser, function (req, res) {
+app.post('/downloadVideo', function (req, res) {
   console.log(req.body);
   const ref = req.body.url;
   const videoId = req.body.url.split('v=')[1];
@@ -95,31 +95,49 @@ app.post('/downloadVideo', urlencodedParser, function (req, res) {
   ffmpegProcess.on('close', () => {
     // File done downloading
     // Add video information to database
-    let videoItem = {};
     ytdl.getInfo(videoId).then(info => {
-      videoItem = {
-        videoId: videoId,
-        title: info.videoDetails.title,
-        description: info.description,
-        rating: info.player_response.videoDetails.averageRating,
-        uploadedBy: info.videoDetails.author.name,
-      };
+      const thumbnailUrl = info.videoDetails.thumbnails[3].url; // Get third largest thumbnail, but not fullsize.
+      fetch(thumbnailUrl)
+        .then(res => {
+          const saveLocation = fs.createWriteStream(`./public/thumbnails/${videoId}.webp`);
+          res.body.pipe(saveLocation);
+        })
+        .then(() => {
+          const videoItem = {
+            videoId: videoId,
+            title: info.videoDetails.title,
+            description: info.videoDetails.description,
+            likes: info.videoDetails.likes,
+            uploadedBy: info.videoDetails.author.name,
+            uploadedOn: info.videoDetails.uploadDate,
+            viewCount: info.videoDetails.viewCount,
+            lengthSeconds: info.videoDetails.lengthSeconds,
+            thumbnailUrl: `./thumbnails/${videoId}.webp`
+          };
+
+          addToDb(videoItem);
+        })
     });
-    db.initialize(dbName, collectionName, function (dbCollection) {
-      // Insert video into database
-      dbCollection.insertOne(videoItem, (error, result) => {
-        if ( error ) throw error;
+
+    const addToDb = (videoItem) => {
+      db.initialize(dbName, dbCollectionName, function (dbCollection) {
+        // Insert video into database
+        dbCollection.insertOne(videoItem, (error, result) => {
+          if (error) throw error;
+          // Cleanup
+          process.stdout.write('\n\n\n\n');
+          clearInterval(progressbarHandle);
+          res.json({
+            success: true,
+            itemUploaded: result.ops
+          });
+        });
+      }, function (err) {
+        res.json({ error: err });
       });
-    }, function (err) { 
-      throw (err);
-    });
-
-    console.log('done');
-    // Cleanup
-    process.stdout.write('\n\n\n\n');
-    clearInterval(progressbarHandle);
+    }
   });
-
+  
   // Link streams
   // FFmpeg creates the transformer streams and we just have to insert / read data
   ffmpegProcess.stdio[3].on('data', chunk => {
