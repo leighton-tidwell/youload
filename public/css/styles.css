@@ -179,7 +179,7 @@ input[type=submit]{
 }
 
 .input-group{ /* might use this section to align the left side of the input boxed */
-  padding: 10px;
+  padding: 5px;
 }
 
 label{ /*used to set the color of the labels*/
