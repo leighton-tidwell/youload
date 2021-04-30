@@ -298,6 +298,7 @@ footer {
 .footer-text a{
   color: var(--footer-links);
   text-decoration: none;
+  display: block;
 }
 
 .footer-text p{
