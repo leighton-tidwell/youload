@@ -23,7 +23,9 @@ app.post('/downloadVideo', function (req, res) {
   console.log(req.body);
   const ref = req.body.url;
   const videoId = req.body.url.split('v=')[1];
-
+  const videoPath = `./public/videos/${videoId}.mkv`;
+  const fileExists = fs.existsSync(videoPath);
+  if(fileExists) return res.json({ error: "File exists." }); // stop script if file exists.
 
   // example taken from ytdl-core github
   // External modules
@@ -66,7 +68,7 @@ app.post('/downloadVideo', function (req, res) {
     process.stdout.write(`running for: ${((Date.now() - tracker.start) / 1000 / 60).toFixed(2)} Minutes.`);
     readline.moveCursor(process.stdout, 0, -3);
   };
-
+  
   // Start the ffmpeg child process
   const ffmpegProcess = cp.spawn(ffmpeg, [
     // Remove ffmpeg's console spamming
@@ -82,7 +84,7 @@ app.post('/downloadVideo', function (req, res) {
     // Keep encoding
     '-c:v', 'copy',
     // Define output file
-    `./public/videos/${videoId}.mkv`,
+    videoPath,
   ], {
     windowsHide: true,
     stdio: [
@@ -137,7 +139,7 @@ app.post('/downloadVideo', function (req, res) {
       });
     }
   });
-  
+
   // Link streams
   // FFmpeg creates the transformer streams and we just have to insert / read data
   ffmpegProcess.stdio[3].on('data', chunk => {
