@@ -283,6 +283,7 @@ footer {
   border-radius:5px; 
   padding:2px; 
   background:linear-gradient(90deg,var(--primary-text),var(--dark-black)); 
+  pointer-events: none; /* make links clickable in footer through mask */
   -webkit-mask: 
      linear-gradient(#fff 0 0) content-box, 
      linear-gradient(#fff 0 0);
