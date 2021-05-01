@@ -13,11 +13,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// << db setup >>
+// Connect to DB
 const db = require("./db");
-const { response } = require('express');
 const dbName = "youload";
 const dbCollectionName = "_videos";
+
+app.get('/viewVideo', function (req, res) {
+  res.sendFile('./public/viewVideo.html', { root: __dirname });
+})
 
 app.post('/downloadVideo', function (req, res) {
   console.log(req.body);
