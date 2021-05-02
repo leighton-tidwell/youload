@@ -34,6 +34,11 @@ header h1{
   font-size: 2em;
 }
 
+header a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .divider {
   height: 1px;
   background: rgb(59,102,211);
@@ -45,27 +50,30 @@ header h1{
 .view{
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
-.container {  /*this is only for the video and its corresponding stuff |not the related stuff */
+.video-container {  /*this is only for the video and its corresponding stuff |not the related stuff */
   width: 70%;
-  padding-left: 100px;
-  padding-top: 40px;
+  margin-top: 1%;
 }
 
 .video img{
   width: 100%;
   aspect-ratio: 16/9;
-  
 }
 
 .video-stats{
-  max-width: 100%
+  max-width: 100%;
+  background: var(--light-grey);
+  padding: 10px;
+  margin-top: 1%;
+  border-radius: 5px;
 }
 
-.video-stats h3{
+.video-stats h2{
   color: var(--primary-text);
-
+  line-height: 1.2em;
 }
 
 .video-stats span{
@@ -86,7 +94,7 @@ header h1{
 
 
 
-/* related videos */
+/* related videos 
 
 .related-container{
   width: 25%;
@@ -108,7 +116,66 @@ header h1{
   width: 60%;
   display: flex;
   flex-direction: column;
+}*/
+
+.sidebar{
+  display:flex;
+  flex-direction: column;
+  margin: 1%;
+  padding: 10px;
+  background: var(--light-grey);
+  border-radius: 5px;
+  width: 15%;
 }
 
+.sidebar h2{
+  line-height: 1.2em;
+  color: var(--footer-links);
+}
+
+.related-video{
+  
+}
+
+.related-video-thumbnail{
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.related-video-details{
+  background: var(--dark-grey);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: var(--secondary-text);
+  padding: 5px;
+}
+
+.related-video-details h4{
+  margin: 0;
+  color: var(--primary-text);
+}
+
+.related-video-details span{
+  font-size: .8em;
+  margin: 0;
+  display: inline-block;
+}
+
+.related-author{
+  display: block;
+  margin: 0;
+  line-height: 1.2em;
+}
+
+.related-stats{
+  width: 60%;
+}
+.related-rating{
+  text-align:right;
+  width: 38%;
+}
 
 
