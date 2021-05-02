@@ -36,6 +36,11 @@ header h1{
   font-size: 2em;
 }
 
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .divider {
   height: 1px;
   background: rgb(59,102,211);
@@ -195,7 +200,15 @@ justify content center */
   flex-basis: 60%;
   color: var(--secondary-text);
   padding: 5px;
+}
 
+.description-container a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.description-container a:hover{
+  text-decoration: underline;
 }
 
 .description-container h4{

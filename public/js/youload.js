@@ -1,3 +1,6 @@
+const searchButton = document.querySelector('#search');
+const searchBar = document.querySelector("#query");
+
 // Script to get video elements
 fetch("../listVideos")
 .then(function(response) {
@@ -20,3 +23,17 @@ const generateVideoElements = (videos) => {
         wrapper.appendChild(videoElement);
     })
 }
+
+const runSearch = () => {
+    const searchQuery = searchBar.value;
+    window.location = `/Search?query=${searchQuery}`;
+}
+
+
+searchButton.addEventListener("click", function () {
+    runSearch();
+})
+
+searchBar.addEventListener("keyup", ({key}) => {
+    if(key === "Enter") runSearch();
+})

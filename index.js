@@ -78,10 +78,10 @@ app.get('/listVideos', function (req, res) {
   })
 });
 
-app.post('/downloadVideo', function (req, res) {
-  console.log(req.body);
-  const ref = req.body.url;
-  const videoId = req.body.url.split('v=')[1];
+app.get('/downloadVideo', function (req, res) {
+  console.log(req.query);
+  const ref = req.query.url;
+  const videoId = req.query.url.split('v=')[1] || req.query.url; // if passed ID, just keep the ID.
   const videoPath = `./public/videos/${videoId}.mkv`;
   const fileExists = fs.existsSync(videoPath);
   if (fileExists) return res.json({ error: "File exists." }); // stop script if file exists.
