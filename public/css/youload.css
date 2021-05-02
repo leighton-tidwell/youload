@@ -88,33 +88,54 @@ background: linear-gradient(90deg, rgba(59,102,211,1) 0%, rgba(59,102,211,0) 100
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 5%;
-  grid-auto-rows: 100px;
 }
 
 .video-grid{
   padding: 30px;
 }
 
-.wrapper img{
-  max-width: 100%;
-}
-
 .video-element{
   height: 100%;
+}
+
+.video-element img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .video-description{
   color:var(--primary-text);
   background: var(--light-grey);
+  padding: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.video-description h2{
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+.video-stats{
+  text-align: left;
+  width: 80%;
+  display: inline-block;
 }
 
 .video-rating{
-  float: right;
+  text-align: right;
+  width: 20%;
+  display: inline-block;
 }
 
 .video-description span{
   color: var(--secondary-text);
   margin: 0;
+  font-size: .8em;
 }

@@ -20,7 +20,20 @@ const dbCollectionName = "_videos";
 
 app.get('/viewVideo', function (req, res) {
   res.sendFile('./public/viewVideo.html', { root: __dirname });
+});
+
+app.get('/YouLoad', function(req, res){
+  res.sendFile('./public/youload.html', { root: __dirname });
 })
+
+app.get('/listVideos', function (req, res) {
+  db.initialize(dbName, dbCollectionName, function (dbCollection) {
+    dbCollection.find({}).toArray(function (err, result) {
+      if (err) res.send(err);
+      res.send(JSON.stringify(result));
+    })
+  })
+});
 
 app.post('/downloadVideo', function (req, res) {
   console.log(req.body);
@@ -28,7 +41,7 @@ app.post('/downloadVideo', function (req, res) {
   const videoId = req.body.url.split('v=')[1];
   const videoPath = `./public/videos/${videoId}.mkv`;
   const fileExists = fs.existsSync(videoPath);
-  if(fileExists) return res.json({ error: "File exists." }); // stop script if file exists.
+  if (fileExists) return res.json({ error: "File exists." }); // stop script if file exists.
 
   // example taken from ytdl-core github
   // External modules
@@ -71,7 +84,7 @@ app.post('/downloadVideo', function (req, res) {
     process.stdout.write(`running for: ${((Date.now() - tracker.start) / 1000 / 60).toFixed(2)} Minutes.`);
     readline.moveCursor(process.stdout, 0, -3);
   };
-  
+
   // Start the ffmpeg child process
   const ffmpegProcess = cp.spawn(ffmpeg, [
     // Remove ffmpeg's console spamming
