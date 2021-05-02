@@ -24,6 +24,10 @@ app.get('/', function(req, res) {
   res.sendFile('./public/index.html', { root: __dirname });
 });
 
+app.get('/Search', function(req, res) {
+  res.sendFile('./public/search.html', { root: __dirname });
+});
+
 app.get('/YouLoad', function (req, res) {
   res.sendFile('./public/youload.html', { root: __dirname });
 });
