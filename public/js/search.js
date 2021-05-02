@@ -33,7 +33,7 @@ const runSearch = () => {
             let searchResult = document.createElement("div");
             searchResult.className = "result";
             searchResult.id = video.videoId;
-            searchResult.innerHTML = `<div class="thumbnail-container"><img class="youload-thumbnail" src="${video.thumbnailUrl}"></div><div class="description-container"><a href="../viewVideo?id=${video.videoId}"><h4>${video.title} - ${video.uploadedBy}</h4></a><span class="description-stats">${video.viewCount} - ${video.uploadedOn}</span><span class="description-rating">${String(video.likes)}</span><div class="divider"></div><p>${video.description}</p></div>`;
+            searchResult.innerHTML = `<div class="thumbnail-container"><img class="youload-thumbnail" src="${video.thumbnailUrl}"></div><div class="description-container"><a href="../viewVideo?id=${video.videoId}"><h4>${video.title} - ${video.uploadedBy}</h4></a><span class="description-stats">${numberWithCommas(video.viewCount)} Views - ${video.uploadedOn}</span><span class="description-rating">${numberWithCommas(video.likes)}</span><div class="divider"></div><p>${video.description}</p></div>`;
             youloadContainer.appendChild(searchResult);
         })
     }
@@ -50,6 +50,7 @@ const runSearch = () => {
         });
     
     const generateResultsYoutube = (videos) => {
+        console.log(videos);
         let header = document.createElement("h3");
         header.innerHTML = `${videos.length} Results from Youtube`;
         youtubeContainer.appendChild(header);
@@ -59,18 +60,30 @@ const runSearch = () => {
                 let searchResult = document.createElement("div");
                 searchResult.className = "result";
                 searchResult.id = video.videoId;
-                searchResult.innerHTML = `<div class="thumbnail-container"><img class="youtube-thumbnail" src="${video.image}"></div><div class="description-container"><a href="javascript:downloadVideo('${video.videoId}');"><h4>${video.title} - ${video.author.name}</h4></a><span class="description-stats">${video.views} - ${video.ago}</span><span class="description-rating">Unknown</span><div class="divider"></div><p>${video.description}</p></div>`;
+                searchResult.innerHTML = `<div class="thumbnail-container"><img class="youtube-thumbnail" src="${video.image}"></div><div class="description-container"><a href="javascript:downloadVideo('${video.videoId}','${encodeURI(video.title)}');"><h4>${video.title} - ${video.author.name}</h4></a><span class="description-stats">${numberWithCommas(video.views)} Views - ${video.ago} - ${video.duration.timestamp}</span><span class="description-rating">Unknown</span><div class="divider"></div><p>${video.description}</p></div>`;
                 youtubeContainer.appendChild(searchResult);
             }
         })
     }
 }
 
-const downloadVideo = (id) => {
+const downloadVideo = (id, title) => {
+    const notificationContainer = document.querySelector(".notification-container");
+    let notification = document.createElement("div");
+    notification.className = "notification";
+    notification.id = `${id}-notification`;
+    notification.innerHTML = `${decodeURI(title)} is downloading.. this notification will disappear when done.`;
+    notificationContainer.appendChild(notification);
     fetch(`/downloadVideo?url=${id}`)
     .then( function(res) {
-        if(res.status == 200) alert("This video has already been downloaded.");
+        if(res.error) alert("This video has already been downloaded.");
+        const not = document.querySelector(`#${id}-notification`);
+        not.parentNode.removeChild(not);
     })
+}
+
+const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 if(queryParam) {
