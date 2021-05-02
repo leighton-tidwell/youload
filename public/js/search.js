@@ -33,7 +33,7 @@ const runSearch = () => {
             let searchResult = document.createElement("div");
             searchResult.className = "result";
             searchResult.id = video.videoId;
-            searchResult.innerHTML = `<div class="thumbnail-container"><img class="youload-thumbnail" src="${video.thumbnailUrl}"></div><div class="description-container"><h4>${video.title} - ${video.uploadedBy}</h4><span class="description-stats">${video.viewCount} - ${video.uploadedOn}</span><span class="description-rating">${String(video.likes)}</span><div class="divider"></div><p>${video.description}</p></div>`;
+            searchResult.innerHTML = `<div class="thumbnail-container"><img class="youload-thumbnail" src="${video.thumbnailUrl}"></div><div class="description-container"><a href="../viewVideo?id=${video.videoId}"><h4>${video.title} - ${video.uploadedBy}</h4></a><span class="description-stats">${video.viewCount} - ${video.uploadedOn}</span><span class="description-rating">${String(video.likes)}</span><div class="divider"></div><p>${video.description}</p></div>`;
             youloadContainer.appendChild(searchResult);
         })
     }
@@ -69,7 +69,7 @@ const runSearch = () => {
 const downloadVideo = (id) => {
     fetch(`/downloadVideo?url=${id}`)
     .then( function(res) {
-        console.log(res);
+        if(res.status == 200) alert("This video has already been downloaded.");
     })
 }
 
