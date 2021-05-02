@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const fetch = require('node-fetch');
+const ytdl = require('ytdl-core');
+const ffmpeg = require('ffmpeg-static');
 const yts = require('yt-search');
 const app = express();
 const port = 3000;
@@ -59,15 +61,23 @@ app.get('/searchYouload', function (req, res) {
 })
 
 app.get('/videoDetails', function (req, res){
-  const query = req.query.query;
-  if(!query) return res.sendStatus(404);
+  const id = req.query.id;
+  if(!id) return res.sendStatus(404);
   db.initialize(dbName, dbCollectionName, function (dbCollection) {
-    dbCollection.findOne({ "videoId": query }, (function (err, result) {
+    dbCollection.findOne({ "videoId": id }, (function (err, result) {
       if (err) res.send(err);
       res.send(JSON.stringify(result));
     }))
   })
 })
+
+app.get('/relatedVideos', function (req, res) {
+  const id = req.query.id;
+  if(!id) return res.sendStatus(404);
+  ytdl.getInfo(id).then(info => {
+    res.json(info.related_videos);
+  });
+});
 
 app.get('/listVideos', function (req, res) {
   db.initialize(dbName, dbCollectionName, function (dbCollection) {
@@ -88,8 +98,6 @@ app.get('/downloadVideo', function (req, res) {
 
   // example taken from ytdl-core github
   // External modules
-  const ytdl = require('ytdl-core');
-  const ffmpeg = require('ffmpeg-static');
   // Global constants
   const tracker = {
     start: Date.now(),

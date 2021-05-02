@@ -58,7 +58,7 @@ header a{
   margin-top: 1%;
 }
 
-.video img{
+.video video{
   width: 100%;
   aspect-ratio: 16/9;
 }
@@ -69,6 +69,7 @@ header a{
   padding: 10px;
   margin-top: 1%;
   border-radius: 5px;
+  margin-bottom: 1%;
 }
 
 .video-stats h2{
@@ -80,43 +81,12 @@ header a{
   color: var(--secondary-text);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* related videos 
-
-.related-container{
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.video-stats p{
+  margin-top: 5px 0;
+  color: var(--secondary-text);
 }
 
-.related-videos-sidebar{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.related-videos{
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-}*/
+/* Sidebar */
 
 .sidebar{
   display:flex;
@@ -134,7 +104,7 @@ header a{
 }
 
 .related-video{
-  
+  margin-bottom: 10px;
 }
 
 .related-video-thumbnail{
@@ -178,4 +148,22 @@ header a{
   width: 38%;
 }
 
+.notification-container{
+  position: fixed;
+  top: 1;
+  right: 0;
+  margin-top:3%;
+  width: 30%;
+}
+
+.notification {
+  padding: 20px;
+  border-radius: 5px;
+  margin: 5px;
+  max-width: 60%;
+  background: var(--primary-text);
+  color: var(--submit-text-color);
+  border: 1px solid var(--dark-grey);
+  display:block;
+}
 
