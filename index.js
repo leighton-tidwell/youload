@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const fetch = require('node-fetch');
+const yts = require('yt-search');
 const app = express();
 const port = 3000;
 
@@ -18,12 +19,50 @@ const db = require("./db");
 const dbName = "youload";
 const dbCollectionName = "_videos";
 
+// Static Files
+app.get('/', function(req, res) {
+  res.sendFile('./public/index.html', { root: __dirname });
+});
+
+app.get('/YouLoad', function (req, res) {
+  res.sendFile('./public/youload.html', { root: __dirname });
+});
+
 app.get('/viewVideo', function (req, res) {
   res.sendFile('./public/viewVideo.html', { root: __dirname });
 });
 
-app.get('/YouLoad', function(req, res){
-  res.sendFile('./public/youload.html', { root: __dirname });
+
+// APIS
+app.get('/searchYoutube', function (req, res) {
+  const query = req.query.query;
+  if(!query) return res.sendStatus(404);
+  yts(query)
+    .then((results) => {
+      res.json(results);
+    })
+});
+
+app.get('/searchYouload', function (req, res) {
+  const query = req.query.query;
+  if(!query) return res.sendStatus(404);
+  db.initialize(dbName, dbCollectionName, function (dbCollection) {
+    dbCollection.find({ "title": { "$regex": query, "$options": "i" } }).toArray(function (err, result) {
+      if (err) res.send(err);
+      res.send(JSON.stringify(result));
+    })
+  })
+})
+
+app.get('/videoDetails', function (req, res){
+  const query = req.query.query;
+  if(!query) return res.sendStatus(404);
+  db.initialize(dbName, dbCollectionName, function (dbCollection) {
+    dbCollection.findOne({ "videoId": query }, (function (err, result) {
+      if (err) res.send(err);
+      res.send(JSON.stringify(result));
+    }))
+  })
 })
 
 app.get('/listVideos', function (req, res) {
