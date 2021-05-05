@@ -16,7 +16,3 @@ jobs:
             cd ~/youload/ # navigate into the folder
             git pull
             pm2 restart index.js # start as a background service.
-        env:
-          CI: true
-          PORT: ${{ secrets.APPPORT }}
-          DB_LINK: ${{ secrets.DB_LINK }}
