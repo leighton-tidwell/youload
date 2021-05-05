@@ -71,13 +71,13 @@ const downloadVideo = (id, title) => {
     const notificationContainer = document.querySelector(".notification-container");
     let notification = document.createElement("div");
     notification.className = "notification";
-    notification.id = `${id}-notification`;
+    notification.id = `notification-${id}`;
     notification.innerHTML = `${decodeURI(title)} is downloading.. this notification will disappear when done.`;
     notificationContainer.appendChild(notification);
     fetch(`/downloadVideo?url=${id}`)
     .then( function(res) {
         if(res.error) alert("This video has already been downloaded.");
-        const not = document.querySelector(`#${id}-notification`);
+        const not = document.querySelector(`#notification-${id}`);
         not.parentNode.removeChild(not);
     })
 }
