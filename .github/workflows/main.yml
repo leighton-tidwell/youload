@@ -14,10 +14,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/youload/ # navigate into the folder
-            git clone https://github.com/leighton-tidwell/youload app # clone the repo into the 'app' folder
-            cd youload # navigate into the repo
-            npm install # install dependencies 
-            pm2 start app.js # start as a background service.
+            git pull
+            pm2 restart index.js # start as a background service.
         env:
           CI: true
           PORT: ${{ secrets.APPPORT }}
