@@ -95,6 +95,7 @@ header a {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1%;
+  margin-bottom: 10px;
 }
 
 .video-grid{
