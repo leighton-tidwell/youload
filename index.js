@@ -90,7 +90,7 @@ app.get('/listVideos', function (req, res) {
 });
 
 app.get('/downloadVideo', function (req, res) {
-  console.log(req.query);
+  if(req.query.url === null) return
   const ref = req.query.url;
   const videoId = req.query.url.split('v=')[1] || req.query.url; // if passed ID, just keep the ID.
   const videoPath = `./public/videos/${videoId}.mkv`;
