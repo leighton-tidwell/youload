@@ -56,7 +56,7 @@ const populateRelated = (data) => {
         let relatedVideo = document.createElement("div");
         relatedVideo.className = "related-video";
         relatedVideo.id = video.id;
-        relatedVideo.innerHTML = `<img class="related-video-thumbnail" src="${video.thumbnails[1].url}"><div class="related-video-details"><a href="javascript:downloadVideo('${video.id}','${encodeURI(video.title)}');"><h4>${video.title}</h4></a><h5 class="related-author">${video.author.name}</h5><span class="related-stats">${numberWithCommas(video.view_count)} Views - ${video.published}</span><span class="related-rating">Unknown</span></div>`;
+        relatedVideo.innerHTML = `<img class="related-video-thumbnail" src="/image?url=${video.thumbnails[1].url}"><div class="related-video-details"><a href="javascript:downloadVideo('${video.id}','${encodeURI(video.title)}');"><h4>${video.title}</h4></a><h5 class="related-author">${video.author.name}</h5><span class="related-stats">${numberWithCommas(video.view_count)} Views - ${video.published}</span><span class="related-rating">Unknown</span></div>`;
         sidebar.appendChild(relatedVideo);
     })
 }

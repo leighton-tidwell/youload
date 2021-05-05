@@ -60,7 +60,7 @@ const runSearch = () => {
                 let searchResult = document.createElement("div");
                 searchResult.className = "result";
                 searchResult.id = video.videoId;
-                searchResult.innerHTML = `<div class="thumbnail-container"><img class="youtube-thumbnail" src="${video.image}"></div><div class="description-container"><a href="javascript:downloadVideo('${video.videoId}','${encodeURI(video.title)}');"><h4>${video.title} - ${video.author.name}</h4></a><span class="description-stats">${numberWithCommas(video.views)} Views - ${video.ago} - ${video.duration.timestamp}</span><span class="description-rating">Unknown</span><div class="divider"></div><p>${video.description}</p></div>`;
+                searchResult.innerHTML = `<div class="thumbnail-container"><img class="youtube-thumbnail" src="/image?url=${video.image}"></div><div class="description-container"><a href="javascript:downloadVideo('${video.videoId}','${encodeURI(video.title)}');"><h4>${video.title} - ${video.author.name}</h4></a><span class="description-stats">${numberWithCommas(video.views)} Views - ${video.ago} - ${video.duration.timestamp}</span><span class="description-rating">Unknown</span><div class="divider"></div><p>${video.description}</p></div>`;
                 youtubeContainer.appendChild(searchResult);
             }
         })
