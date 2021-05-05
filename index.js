@@ -7,8 +7,9 @@ const fetch = require('node-fetch');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg-static');
 const yts = require('yt-search');
+require('dotenv').config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(express.static('public'));
 app.use(express.json());

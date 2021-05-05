@@ -10,8 +10,8 @@ thumbnails/
 # ignore package-lock
 package-lock.json
 
-# ignore db.js
-db.js
+# ignore .env
+.env
 
 # ignore test.html
 test.html
