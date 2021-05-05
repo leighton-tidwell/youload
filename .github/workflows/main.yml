@@ -7,19 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy NodeJS app
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            mkdir -p ~/youload/ # create a new folder
-            cd ~/youload/ # navigate into the folder
-            git clone https://github.com/leighton-tidwell/youload app # clone the repo into the 'app' folder
-            cd youload # navigate into the repo
-            npm install # install dependencies 
-            pm2 start index.js # start as a background service
-        env:
-          CI: true
-          DB_LINK: ${{ secrets.DB_LINK }}
-          PORT: ${{ secrets.APPPORT }}
+          script: whoami
