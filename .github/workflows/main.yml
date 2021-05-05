@@ -8,10 +8,14 @@ jobs:
     steps:
       - name: Deploy NodeJS app
         uses: appleboy/ssh-action@master
+        env:
+          PORT: ${{ secrets.APPPORT }}
+          DB_LINK: ${{ secrets.DB_LINK }}
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          envs: PORT,DB_LINK
           script: |
             cd ~/youload/ # navigate into the folder
             git pull
