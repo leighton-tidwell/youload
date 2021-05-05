@@ -12,6 +12,7 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.CONNECTPORT }}
           script: |
             mkdir -p ~/youload/ # create a new folder
             cd ~/youload/ # navigate into the folder
