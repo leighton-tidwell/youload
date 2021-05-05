@@ -19,3 +19,7 @@ jobs:
             cd youload # navigate into the repo
             npm install # install dependencies 
             pm2 start index.js # start as a background service
+        env:
+          CI: true
+          DB_LINK: ${{ secrets.DB_LINK }}
+          PORT: ${{ secrets.PORT }}
