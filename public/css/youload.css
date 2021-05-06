@@ -20,7 +20,7 @@ body{
 
 }
 
-h1, h2, h3{
+h1, h2, h3, h4{
   margin: 0;
 }
 
@@ -137,6 +137,12 @@ header a {
 .video-description h2{
   font-size: 1em;
   line-height: 1.2em;
+}
+
+.video-description h4{
+  line-height: 1.2em;
+  font-size: .6em;
+  color: var(--secondary-text);
 }
 
 .video-stats{
