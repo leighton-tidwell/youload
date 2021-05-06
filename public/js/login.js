@@ -15,6 +15,7 @@ const attemptLogin = () => {
     })
     .then(function (data) {
       if(data.success) window.location = '/YouLoad';
+      if(data.error) alert(data.error);
     });
 };
 
