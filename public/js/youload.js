@@ -19,7 +19,7 @@ const generateVideoElements = (videos) => {
         let videoElement = document.createElement("div");
         videoElement.className = "video-element";
         videoElement.id = video.videoId;
-        videoElement.innerHTML = `<a href="../viewVideo?id=${video.videoId}"><img src="${video.thumbnailUrl}"/><div class="video-description"></a><a href="../viewVideo?id=${video.videoId}"><h4>${video.title}</h4></a><h3>${video.uploadedBy}</h3><span class="video-stats">${numberWithCommas(video.viewCount)} Views - ${video.uploadedOn}</span><span class="video-rating">${numberWithCommas(video.likes)}</span></div>`;
+        videoElement.innerHTML = `<a href="../viewVideo?id=${video.videoId}"><img src="${video.thumbnailUrl}"/><div class="video-description"></a><a href="../viewVideo?id=${video.videoId}"><h2>${video.title}</h2></a><h3>${video.uploadedBy}</h3><span class="video-stats">${numberWithCommas(video.viewCount)} Views - ${video.uploadedOn}</span><span class="video-rating">${numberWithCommas(video.likes)}</span></div>`;
         wrapper.appendChild(videoElement);
     })
 }

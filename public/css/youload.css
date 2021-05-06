@@ -139,9 +139,9 @@ header a {
   line-height: 1.2em;
 }
 
-.video-description h4{
+.video-description h3{
   line-height: 1.2em;
-  font-size: .6em;
+  font-size: .8em;
   color: var(--secondary-text);
 }
 
