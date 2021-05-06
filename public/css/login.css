@@ -86,6 +86,16 @@ input{
   flex-basis: 85%;
 }
 
+.input-group p{
+  text-align: center;
+  color: var(--grey-text);
+}
+
+.input-group a{
+  text-decoration: none;
+  color: var(--primary-text);
+}
+
 button{
   color:var(--submit-text-color);
   border-radius: 5px;
