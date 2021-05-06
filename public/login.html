@@ -8,31 +8,26 @@
 
 <body>
   <header> 
-    <h1>Morale Booster</h1>
+    <h1><a href="/">Morale Booster</a></h1>
   </header>
   <div class="divider"></div>
   <section class="input-container">
     <h2>Login</h2>
     <div class="input-group">
       <label for="username">Username:</label>
-      <input type="text" name="username" class="login-input">
+      <input type="text" name="username" id="username" class="login-input">
     </div>
     <div class="input-group">
       <label for="password">Password:</label>
-      <input type="text" name="password" class="login-input">
+      <input type="password" name="password" id="password" class="login-input">
     </div>
-    <button type="button" class="login-button">Login</button>
+    <button type="button" class="login-button" id="login">Login</button>
     <div class="input-group">
       <p>Don't have an account?<br>
-      <a href="signup.html">Click Here</a>
+      <a href="/register">Click Here</a>
       </p>
     </div>
   </section>
-
-
-
-
-
-
+  <script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
