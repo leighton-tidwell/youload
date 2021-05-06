@@ -126,7 +126,8 @@ app.post("/register", async function (req, res) {
   if (req.body.username === null || req.body.password === null) return;
   const username = req.body.username;
   const password = req.body.password;
-  let user = { username, password };
+  const email = req.body.email;
+  let user = { email, username, password };
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(password, salt);
 
