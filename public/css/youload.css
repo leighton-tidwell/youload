@@ -263,3 +263,21 @@ justify content center */
   border: 1px solid var(--dark-grey);
   display:block;
 }
+
+@media only screen and (max-width: 760px) {
+  .wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .search-form {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 760px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .search-form {
+    width: 80%;
+  }
+}
