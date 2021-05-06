@@ -15,8 +15,6 @@
           <h1>Morale Booster</h1>
         </div>
         <div class="nav-right">
-          <a href="#">YouLoad</a>
-          <a href="#">Games</a>
           <a href="#">About</a>
         </div>
       </nav>
@@ -24,6 +22,7 @@
         <h1>For The Airmen, By The Airmen</h1>
       </div>
     </div>
+    <div id="particles"></div>
   </header>
 
   <!-- This is the class for underneath of the header,
@@ -106,5 +105,11 @@
     </div>
   </footer>
   <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/particles.min.js"></script>
+  <script type="text/javascript">
+  particlesJS.load('particles', 'js/particles.json', function() {
+    console.log('callback - particles.js config loaded');
+  });
+  </script>
 </body>
 </html>

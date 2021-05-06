@@ -57,6 +57,14 @@ header{
   background: url("../images/mountain-magic-hour.jpg");
   background-position: top center;
   background-size: cover;
+  position: relative;
+  overflow:hidden;
+}
+
+#particles{
+  position:absolute;
+  width: 100%;
+  top: 0;
 }
 
 nav{
@@ -73,6 +81,7 @@ nav{
   padding: .5em;
   font-weight: 800;
   font-size: 1.5em;
+  z-index: 9999;
 }
 
 .nav-right{
@@ -81,6 +90,7 @@ nav{
   padding: 0px 3em 0px 0px;
   font-weight: 300;
   font-size: 1.2em;
+  z-index: 9999;
 }
 
 .nav-right a{
