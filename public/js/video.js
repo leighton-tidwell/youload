@@ -63,7 +63,7 @@ const populateRelated = (data) => {
       relatedVideoLink.forEach(link => {
         link.addEventListener("click", function (e) {
           const videoId = e.target.id.split("-")[1] || "";
-          const videoTitle = document.querySelector(`#title-${videoId}`).value;
+          const videoTitle = document.querySelector(`#title-${videoId}`).innerHTML;
           downloadVideo(videoId, videoTitle);
         });
       });
