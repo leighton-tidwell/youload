@@ -65,7 +65,7 @@ const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const relatedVideoLink = document.querySelectorAll("[id^=download-]");
+const relatedVideoLink = document.querySelectorAll('[id^="download-"]');
 relatedVideoLink.addEventListener("click", function (e) {
     const videoId = e.target.id.split("-")[1] || "";
     const videoTitle = document.querySelector(`#title-${videoId}`).value;
