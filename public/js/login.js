@@ -1,8 +1,10 @@
 const loginButton = document.querySelector("#login");
+const usernameField = document.querySelector("#username");
+const passwordField = document.querySelector("#password");
 
 const attemptLogin = () => {
-  const username = document.querySelector("#username").value;
-  const password = document.querySelector("#password").value;
+  const username = usernameField.value;
+  const password = passwordField.value;
   const user = { username, password };
   fetch("../login", {
     method: "post",
@@ -22,3 +24,14 @@ const attemptLogin = () => {
 loginButton.addEventListener("click", function () {
   attemptLogin();
 });
+
+usernameField.addEventListener("keyup", ({key}) => {
+  if (key === "Enter") attemptLogin();
+})
+
+passwordField.addEventListener("keyup", ({key}) => {
+  if (key === "Enter") attemptLogin();
+})
+
+
+
