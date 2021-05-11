@@ -60,8 +60,10 @@ const populateRelated = (data) => {
     sidebar.appendChild(relatedVideo);
     if (index === array.length) {
       const relatedVideoLink = document.querySelectorAll('[id^="download-"]');
+      console.log(relatedVideoLink);
       relatedVideoLink.forEach(link => {
         link.addEventListener("click", function (e) {
+          alert("click");
           const videoId = e.target.id.split("-")[1] || "";
           const videoTitle = document.querySelector(`#title-${videoId}`).value;
           downloadVideo(videoId, videoTitle);
