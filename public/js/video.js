@@ -52,28 +52,28 @@ const relatedVideos = (id) => {
 const populateRelated = (data) => {
   console.log(data);
   const sidebar = document.querySelector(".sidebar");
-  data.forEach(video => {
+  data.forEach((video, index, array) => {
     let relatedVideo = document.createElement("div");
     relatedVideo.className = "related-video";
     relatedVideo.id = video.id;
-    relatedVideo.innerHTML = `<img class="related-video-thumbnail" src="/image?url=${video.thumbnails[1].url}"><div class="related-video-details"><a id="download-${video.id}"><h4 id="title-${video.title}">${video.title}</h4></a><h5 class="related-author">${video.author.name}</h5><span class="related-stats">${numberWithCommas(video.view_count)} Views - ${video.published}</span><span class="related-rating">Unknown</span></div>`;
+    relatedVideo.innerHTML = `<img class="related-video-thumbnail" src="/image?url=${video.thumbnails[1].url}"><div class="related-video-details"><a id="download-${video.id}" href="#"><h4 id="title-${video.title}">${video.title}</h4></a><h5 class="related-author">${video.author.name}</h5><span class="related-stats">${numberWithCommas(video.view_count)} Views - ${video.published}</span><span class="related-rating">Unknown</span></div>`;
     sidebar.appendChild(relatedVideo);
+    if (index === array.length) {
+      const relatedVideoLink = document.querySelectorAll('[id^="download-"]');
+      relatedVideoLink.forEach(link => {
+        link.addEventListener("click", function (e) {
+          const videoId = e.target.id.split("-")[1] || "";
+          const videoTitle = document.querySelector(`#title-${videoId}`).value;
+          downloadVideo(videoId, videoTitle);
+        });
+      });
+    }
   })
 }
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
-const relatedVideoLink = document.querySelectorAll('[id^="download-"]');
-relatedVideoLink.forEach(link => {
-  link.addEventListener("click", function (e) {
-    const videoId = e.target.id.split("-")[1] || "";
-    const videoTitle = document.querySelector(`#title-${videoId}`).value;
-    downloadVideo(videoId, videoTitle);
-  });
-});
-
 
 const downloadVideo = (id, title) => {
   const notificationContainer = document.querySelector(".notification-container");
